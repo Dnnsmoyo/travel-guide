@@ -8,5 +8,5 @@ Clone the repository: git clone https://github.com/Dnnssmoyo/travel-guide.git
 Install requirements: pip install   requirements.txt
 
 Test it out: flask run
-Open localhost:8888
+Open localhost:5000
 
