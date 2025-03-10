@@ -1,0 +1,130 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+</style>
+</head>
+<body>
+
+<h2>Travel Guide</h2>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+<ul id="myUL">
+  <li id="lnd"><a href="#">London</a></li><button><a href="london">Tell friend</a></button>
+  <li id ="paris"><a href="#">Paris</a></li><button><a href="paris">Tell friend</a></button>
+
+  <li id ="rome"><a href="#">Rome</a></li><button><a href="rome">Tell friend</a></button>
+  <li id ="berlin"><a href="#">Berlin</a></li><button><a href="berlin">Tell friend</a></button>
+
+  <li id ="gen"><a href="#">Geneva</a></li><button><a href="geneva">Tell friend</a></button>
+  <li id="new"><a href="#">New York</a></li><button><a href="newyork">Tell friend</a></button>
+  <li id="cape"><a href="#">Cape Town</a></li><button><a href="cape">Tell friend</a></button>
+</ul>
+<div id="lnd">
+</div>
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+$(document).ready(function(){
+  $("#lnd").click(function(){
+    $.get("https://api.openweathermap.org/data/2.5/weather?q=London&appid=cc24cc7c42f06680e1bec75abb70ca0c", function(data, status){
+      alert("The temperature in London is: " + data.main.temp + "Degrees");
+    });
+  });
+});
+$(document).ready(function(){
+  $("#paris").click(function(){
+    $.get("https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=cc24cc7c42f06680e1bec75abb70ca0c", function(data, status){
+      alert("The temperature in Paris is: " + data.main.temp + "Degrees");
+    });
+  });
+});
+$(document).ready(function(){
+  $("#rome").click(function(){
+    $.get("https://api.openweathermap.org/data/2.5/weather?q=Rome&appid=cc24cc7c42f06680e1bec75abb70ca0c", function(data, status){
+      alert("The temperture in Rome is: " + data.main.temp + "Degrees");
+    });
+  });
+});
+$(document).ready(function(){
+  $("#berlin").click(function(){
+    $.get("https://api.openweathermap.org/data/2.5/weather?q=Berlin&appid=cc24cc7c42f06680e1bec75abb70ca0c", function(data, status){
+      alert("The temeperature in Berlin is: " + data.main.temp + "Degrees");
+    });
+  });
+});
+$(document).ready(function(){
+  $("#gen").click(function(){
+    $.get("https://api.openweathermap.org/data/2.5/weather?q=Geneva&appid=cc24cc7c42f06680e1bec75abb70ca0c", function(data, status){
+      alert("The temperature in Geneva is: " + data.main.temp + "Degrees");
+    });
+  });
+});
+$(document).ready(function(){
+  $("#new").click(function(){
+    $.get("https://api.openweathermap.org/data/2.5/weather?q=New York&appid=cc24cc7c42f06680e1bec75abb70ca0c", function(data, status){
+      alert("The temperature in New York is: " + data.main.temp + "Degrees");
+    });
+  });
+});
+$(document).ready(function(){
+  $("#cape").click(function(){
+    $.get("https://api.openweathermap.org/data/2.5/weather?q=Cape Town&appid=cc24cc7c42f06680e1bec75abb70ca0c", function(data, status){
+      alert("The temperature in Cape Town is: " + data.main.temp + "Deegrees");
+    });
+  });
+});
+</script>
+
+</body>
+</html>
